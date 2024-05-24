@@ -1,0 +1,93 @@
+{
+  "v-text": {
+    "prefix": "vText",
+    "body": [
+      "v-text=\"${text}\""
+    ],
+    "description": "v-text片段"
+  },
+  "v-html": {
+    "prefix": "vHtml",
+    "body": [
+      "v-html=\"${html}\""
+    ],
+    "description": "v-html片段"
+  },
+  "v-show": {
+    "prefix": "vShow",
+    "body": [
+      "v-show=\"show\""
+    ],
+    "description": "v-show片段"
+  },
+  "v-if": {
+    "prefix": "vIf",
+    "body": [
+      "v-if=\"bol\""
+    ],
+    "description": "v-if片段"
+  },
+  "v-else": {
+    "prefix": "vElse",
+    "body": [
+      "v-else"
+    ],
+    "description": "v-else片段"
+  },
+  "v-else-if": {
+    "prefix": "vElseIf",
+    "body": [
+      "v-else-if=\"${bol}\""
+    ],
+    "description": "v-else-if片段"
+  },
+  "v-for": {
+    "prefix": "vFor",
+    "body": [
+      "v-for=\"(${1:item11}, ${2:index11}) in ${3:items11}\" :key=\"${4:index}\""
+    ],
+    "description": "v-for 片段"
+  },
+  "v-on": {
+    "prefix": "vOn",
+    "body": [
+      "v-on:${1:event}=\"${2:handle}\""
+    ],
+    "description": "v-on 片段"
+  },
+  "v-bind": {
+    "prefix": "vBind",
+    "body": [
+      "v-bind$1=\"${2}\""
+    ],
+    "description": "v-bind 片段"
+  },
+  "v-model": {
+    "prefix": "vModel",
+    "body": [
+      "v-model=\"${1:something}\""
+    ],
+    "description": "v-model片段"
+  },
+  "v-slot": {
+    "prefix": "vSlot",
+    "body": [
+      "v-slot=\"${2}\""
+    ],
+    "description": "插槽"
+  },
+  "v-once": {
+    "prefix": "vOnce",
+    "body": [
+      "v-once"
+    ],
+    "description": "v-once片段"
+  },
+  "component": {
+    "prefix": "component",
+    "body": [
+      "<component :is=\"${1:componentId}\"></component>$0"
+    ],
+    "description": "动态组件"
+  }
+}

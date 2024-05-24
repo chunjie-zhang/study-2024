@@ -1,0 +1,82 @@
+{
+  "import": {
+    "prefix": "import",
+    "body": [
+      "import { $1 } from '$2'"
+    ],
+    "description": "import {...} from ..."
+  },
+  "ref": {
+    "prefix": "vRef",
+    "body": [
+      "const ref = ref('')"
+    ],
+    "description": "ref片段"
+  },
+  "setup": {
+    "prefix": "setup",
+    "body": [
+      "setup($3,$4) {",
+      "\t$0",
+      "\treturn {",
+      "\t\t$1",
+      "\t}",
+      "},"
+    ],
+    "description": "setup片段"
+  },
+  "defineProps": {
+    "prefix": "vProps",
+    "body": [
+      "const props = defineProps({\t",
+      "\t${0:name} : ${1:value}\t",
+      "})"
+    ],
+    "description": "defineProps片段"
+  },
+  "defineEmits": {
+    "prefix": "vEmits",
+    "body": [
+      "const emits = defineEmits([\t",
+      "\t\tname\t",
+      "])"
+    ],
+    "description": "defineEmits 片段"
+  },
+  "defineExpose": {
+    "prefix": "vExpose",
+    "body": [
+      "defineExpose({\t",
+      "\t${0:name} : ${1:value}\t",
+      "})"
+    ],
+    "description": "defineExpose 片段"
+  },
+  "Computed": {
+    "prefix": "vComputed",
+    "body": [
+      "const compoted = computed(() => {",
+      "\t",
+      "}),"
+    ],
+    "description": "computed 片段"
+  },
+  "watch": {
+    "prefix": "vWatch",
+    "body": [
+      "watch(${0: ref}, (oldValue, newValue) => {",
+      "\t",
+      "},"
+    ],
+    "description": "watch 片段"
+  },
+  "watchEffect": {
+    "prefix": "vWatchEffect",
+    "body": [
+      "watchEffect(() => {",
+      "\t",
+      "},"
+    ],
+    "description": "watchEffect 片段"
+  }
+}
