@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+}
+
+html {
+  -webkit-app-region: drag;
+}
+
+textarea {
+  -webkit-app-region: no-drag;
+}
+
+.txt {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  background-color: brown;
+} 
