@@ -1,0 +1,10 @@
+.zcj_img {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+  cursor: pointer;
+  z-index: 88;
+}

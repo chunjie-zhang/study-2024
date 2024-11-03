@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "张春节的chrome插件",
+  "description": "这是一个张春节的测试chrome插件",
+  "version": "1.0.0",
+  "icons": {
+    "16": "img/image.png",
+    "48": "img/image.png",
+    "128": "img/image.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+     "type": "module"
+  },
+  "content_scripts":[
+    {
+      "matches": ["https://*.jd.com/*"],
+       "css": ["contentXss/styles.css"],
+       "js": ["contentXss/content-script.js"]
+    }
+  ],
+  "permissions": [
+    "contextMenus",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "notifications",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "", 
+    "default_popup": "html/popup.html"
+  },
+  "side_panel": {
+    "default_path": "html/sidepanel/sidepanel.html"
+  },
+  "commands": {
+    "run-sidePanel": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Run \"foo\" on the current page."
+    }
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  }
+}
