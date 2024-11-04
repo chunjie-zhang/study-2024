@@ -3,6 +3,7 @@
   "name": "张春节的chrome插件",
   "description": "这是一个张春节的测试chrome插件",
   "version": "1.0.0",
+  "minimum_chrome_version": "116",
   "icons": {
     "16": "img/image.png",
     "48": "img/image.png",
@@ -31,7 +32,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_title": "", 
+    "default_title": "打开张春节的插件", 
     "default_popup": "html/popup.html"
   },
   "side_panel": {

@@ -84,11 +84,6 @@ chrome.notifications.create('13123',{
   },
 )
 
-// 页面发送消息
-chrome.runtime.sendMessage({message: "bgjs的js发送的消息"}, (res) => {
-  console.log('======backgroundjs', res);
-})
-
 // 监听通信
 chrome.runtime.onMessage.addListener((res, sender, sendResponse) => {
   console.log('=====onMessage', res, sender, sendResponse);
@@ -97,12 +92,12 @@ chrome.runtime.onMessage.addListener((res, sender, sendResponse) => {
 
 // 页面发送消息
 const loader2 = async () => {
-  // 页面发送消息
-chrome.runtime.sendMessage({message: "bgjs的js发送的消息"}, (res) => {
-  console.log('======backgroundjs', res);
-})
+  // bg不能以这种方式给注入js发送消息
+  chrome.runtime.sendMessage({message: "bgjs发送的消息"}, (res) => {
+    console.log('======backgroundjs', res);
+  })
   let tab = await chrome.tabs.query({active: true, currentWindow: true})
-  console.log('=======', tab);
+  console.log('=======loader2', tab);
   chrome.tabs.sendMessage(tab[0].id, {message: "backgroundjs发送的消息"}, {}, (res) => {
     console.log('======content-script-sendMessage22', res);
   })
@@ -110,7 +105,7 @@ chrome.runtime.sendMessage({message: "bgjs的js发送的消息"}, (res) => {
 
 setTimeout(() => {
   loader2()
-}, 5000)
+}, 10000)
 
 chrome.action.setBadgeBackgroundColor({color:'#3780Fa'})
 chrome.action.setBadgeText({
@@ -121,12 +116,8 @@ chrome.action.setBadgeText({
 chrome.runtime.onMessage.addListener(async(res, sender, sendResponse) => {
  if(res.type === 'openPopup') {
   // chrome.scripting.executeScript({
-  //   target: {tabId: tab[0].id},
-  //   function: function() {
-  //     var script = document.createElement('script');
-  //     script.src = 'https://jm-static.jd.com/shop-common-components/shop-common-components.iife.js'; // 在线链接的JavaScript文件
-  //     document.head.appendChild(script);
-  //   }
+  //   target: {tabId: sender.tab ? sender.tab.id : sender.id,},
+  //   files: ["js/inject_base_bridge.js"]
   // });
   // chrome.action.openPopup(
   //   {
@@ -135,12 +126,14 @@ chrome.runtime.onMessage.addListener(async(res, sender, sendResponse) => {
   //     console.log('=====打开插件');
   //   }
   // )
-  await chrome.sidePanel.open({ tabId: sender.tab.id });
-  await chrome.sidePanel.setOptions({
-    tabId: sender.tab.id,
+  console.log('=======监听通信-打开popup弹窗', sender);
+  chrome.sidePanel.setOptions({
+    tabId: sender.tab ? sender.tab.id : sender.id,
     path: 'html/sidepanel/sidepanel.html',
     enabled: true
   });
+  chrome.sidePanel.open({tabId:  sender.tab ? sender.tab.id : ''});
+  console.log('=======打开popup');
  }
 
 })
@@ -150,8 +143,14 @@ const GOOGLE_ORIGIN = '.jd.com';
 
 // 监听图标点击
 chrome.action.onClicked.addListener((tab) => {
+  console.log('=======chrome.action.onClicked', tab);
+  inject();
+  chrome.sidePanel.setOptions({
+    enabled: true
+  });
   chrome.sidePanel.open(
     {
+      tabId: tab.id,
     },
     (res) => {
       console.log('======sidePanel', res);
@@ -200,3 +199,7 @@ chrome.commands.onCommand.addListener(async (command) => {
     });
   }
 });
+
+chrome.sidePanel
+  .setPanelBehavior({ openPanelOnActionClick: true })
+  .catch((error) => console.error(error));
