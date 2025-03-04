@@ -19,6 +19,21 @@ sendDom.addEventListener('click', () => {
   })
 })
 
+
+const cookieDom = document.getElementById('cookie');
+const cookieTxtDom = document.getElementById('cookie-text');
+cookieDom.addEventListener('click', async () => {
+  let tabs = await chrome.tabs.query({active: true, currentWindow: true})
+  const url = new URL(tabs[0].url)
+  console.log('=======', url, chrome.cookies);
+  chrome.cookies.getAll({
+    domain: 'jd.com'
+  }, (cookies) => {
+    console.log('======cookies', cookies);
+    cookieTxtDom.innerHtml = cookies.map(c => c.name+"="+c.value).join(';')
+  })
+})
+
 // 页面监听消息
 chrome.runtime.onMessage.addListener((res, sender, sendResponse) => {
   console.log('=====sidepanel', res, sender, sendResponse);

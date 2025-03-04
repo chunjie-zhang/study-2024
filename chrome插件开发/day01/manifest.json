@@ -26,7 +26,8 @@
     "activeTab",
     "tabs",
     "notifications",
-    "sidePanel"
+    "sidePanel",
+    "cookies"
   ],
   "host_permissions": [
     "<all_urls>"

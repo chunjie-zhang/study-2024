@@ -10,17 +10,17 @@ const loadScript = (url) => new Promise((resolve, reject) => {
   document.body.appendChild(script);
 });
 
-const div = document.createElement('button');
+const div = document.createElement('div');
 div.className = "zcj_container"
 const innerHtml = `<img src="https://jsd.cdn.zzko.cn/gh/chunjie-zhang/picx-images-hosting@master/study-note/image.3uuuk9ap03.webp" class="zcj_img">`
 div.innerHTML = innerHtml;
 
-const div1 = document.createElement('button');
-div1.className = "zcj_container1"
-div1.innerHTML = 'zcj插件测试';
+// const div1 = document.createElement('button');
+// div1.className = "zcj_container1"
+// div1.innerHTML = 'zcj插件测试';
 
 document.body.appendChild(div)
-document.body.appendChild(div1)
+// document.body.appendChild(div1)
   // 加载动态js-不可使用，会被阻止
 // loadScript('https://jm-static.jd.com/shop-common-components/shop-common-components.iife.js')
 
@@ -33,14 +33,14 @@ img.addEventListener('click', () => {
   })
 })
 
-const img1 = document.querySelector('.zcj_container1');
-img1.addEventListener('click', () => {
-  console.log('=======点击了zcj插件1', chrome.runtime)
-  // 页面发送消息给bg打开popup
-  chrome.runtime.sendMessage({type: 'openPopup', message: "页面发送消息给bg打开popup"}, (res) => {
-    console.log('======content-script-sendMessage111', res);
-  })
-})
+// const img1 = document.querySelector('.zcj_container1');
+// img1.addEventListener('click', () => {
+//   console.log('=======点击了zcj插件1', chrome.runtime)
+//   // 页面发送消息给bg打开popup
+//   chrome.runtime.sendMessage({type: 'openPopup', message: "页面发送消息给bg打开popup"}, (res) => {
+//     console.log('======content-script-sendMessage111', res);
+//   })
+// })
 
 // 页面发送消息
 chrome.runtime.sendMessage({message: "注入的js发送的消息"}, (res) => {
